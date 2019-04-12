@@ -11,10 +11,10 @@ server.get("/", (_req, res) => {
 server.post("/games", (req, res) => {
   const { title, genre, releaseYear } = req.body
   if (!title || !genre) {
-    res.send(422).json({ message: "Please include title and genre" })
+    res.status(422).json({ message: "Please include title and genre" })
   } else {
     games.push({ title, genre, releaseYear })
-    res.send(200).json({ title, genre, releaseYear })
+    res.status(200).json({ title, genre, releaseYear })
   }
 })
 server.get("/games", (_req, res) => {

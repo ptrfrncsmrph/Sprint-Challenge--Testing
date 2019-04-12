@@ -34,16 +34,16 @@ describe("POST /games", () => {
     return request(server)
       .post("/games")
       .send(pacman)
-      .then(({ data: { title, genre, releaseYear } }) => {
-        expect({ title, genre, releaseYear }).toBe(pacman)
+      .then(({ body: { title, genre, releaseYear } }) => {
+        expect({ title, genre, releaseYear }).toEqual(pacman)
       })
   })
   it("responds with 422 for invalid post", () => {
     return request(server)
       .post("/games")
-      .send(pacman)
-      .then(({ body: { title, genre, releaseYear } }) => {
-        expect({ title, genre, releaseYear }).toBe(pacman)
+      .send(badGame)
+      .then(({ status }) => {
+        expect(status).toBe(422)
       })
   })
 })
