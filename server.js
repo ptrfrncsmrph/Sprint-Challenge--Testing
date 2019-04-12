@@ -4,7 +4,7 @@ const server = express()
 server.use(express.json())
 
 server.get("/", (_req, res) => {
-  res.send("It's alive!")
+  res.json({ message: "It's alive!" })
 })
 
 module.exports = server
